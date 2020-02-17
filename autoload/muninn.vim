@@ -137,7 +137,7 @@ endfunction
 function! muninn#get_asset(url)
   echo "Adding asset: " . a:url
 
-  let l:cmd = 'muninn get-asset --file "' . expand('%:p') . '" --url "' . a:url . '"'
+  let l:cmd    = 'muninn get-asset --file "' . expand('%:p') . '" --url "' . a:url . '"'
   let l:output = system(l:cmd)
 
   call append(line('.'), split(l:output, '\n'))
@@ -149,7 +149,7 @@ function! muninn#open_ui()
   exe ':cd ' . muninn#wiki_path()
 
   let l:status = system('lsof -i :8080')
-  let l:path = expand('%p')
+  let l:path   = expand('%p')
 
   if len(l:status) == 0
     split
