@@ -121,44 +121,44 @@ function! muninn#command_to_qflist(cmd, title)
 endfunction
 
 function! muninn#backlinks()
-  let l:cmd   = 'muninn backlinks --file "' . expand('%:p') . '" --vim'
+  let l:cmd   = 'muninn --root "' . muninn#wiki_path()  . '" backlinks --file "' . expand('%:p') . '" --vim'
   let l:title = 'Backlinks for: ' . expand('%:r')
 
   exe muninn#command_to_qflist(l:cmd, l:title)
 endfunction
 
 function! muninn#tasks_today()
-  let l:cmd   = 'muninn tasks --days 1 --vim'
+  let l:cmd   = 'muninn --root "' . muninn#wiki_path()  . '" tasks --days 0 --vim'
   let l:title = 'Tasks'
 
   exe muninn#command_to_qflist(l:cmd, l:title)
 endfunction
 
-function! muninn#get_asset(url)
-  echo "Adding asset: " . a:url
+" function! muninn#get_asset(url)
+"   echo "Adding asset: " . a:url
 
-  let l:cmd    = 'muninn get-asset --file "' . expand('%:p') . '" --url "' . a:url . '"'
-  let l:output = system(l:cmd)
+"   let l:cmd    = 'muninn get-asset --file "' . expand('%:p') . '" --url "' . a:url . '"'
+"   let l:output = system(l:cmd)
 
-  call append(line('.'), split(l:output, '\n'))
+"   call append(line('.'), split(l:output, '\n'))
 
-  echo "Done!"
-endfunction
+"   echo "Done!"
+" endfunction
 
-function! muninn#open_ui()
-  exe ':cd ' . muninn#wiki_path()
+" function! muninn#open_ui()
+"   exe ':cd ' . muninn#wiki_path()
 
-  let l:status = system('lsof -i :8080')
-  let l:path   = expand('%p')
+"   let l:status = system('lsof -i :8080')
+"   let l:path   = expand('%p')
 
-  if len(l:status) == 0
-    split
-    resize 2
-    exe ':terminal muninn ui'
-    wincmd k
-    sleep 1
-  endif
+"   if len(l:status) == 0
+"     split
+"     resize 2
+"     exe ':terminal muninn ui'
+"     wincmd k
+"     sleep 1
+"   endif
 
-  silent! exe '!open "http://localhost:8080/\#/' . l:path . '"'
-  redraw!
-endfunction
+"   silent! exe '!open "http://localhost:8080/\#/' . l:path . '"'
+"   redraw!
+" endfunction
