@@ -34,14 +34,12 @@ command! WikiBacklinks call muninn#backlinks()
 command! WikiUI        call muninn#open_ui()
 
 command! -nargs=? -complete=custom,muninn#complete_open Wiki call muninn#open(<f-args>)
-command! -nargs=1 WikiGetAsset call muninn#get_asset(<f-args>)
 
 " maps
 nnoremap <leader>wt :Tasks<cr>
 nnoremap <leader>wj :WikiJournal<cr>
 nnoremap <leader>wi :WikiInbox<cr>
 nnoremap <leader>wb :WikiBacklinks<cr>
-nnoremap <leader>wg :WikiGetAsset
 nnoremap <leader>wu :WikiUI<cr>
 
 " bindings for working with tasks:
@@ -87,6 +85,4 @@ highlight def link markdownStrikethrough      Comment
 
 ## Backlog
 
-- [ ] read `g:muninn_path` from `muninn config`
 - [ ] completion for linking notes
-
